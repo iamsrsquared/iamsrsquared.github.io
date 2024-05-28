@@ -1,0 +1,600 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Finlandica', sans-serif;
+}
+
+
+@font-face {
+  font-family: "GlacierIndifference";
+  src: url(fonts/GlacialIndifference-Regular.otf);
+}
+
+
+body {
+  margin: 0;
+  margin-top: 45px;
+  margin-bottom: 100px;
+  background: var(--bg);
+  background-attachment: fixed;
+  touch-action: none;
+  transition: background-color 0.25s;
+  overflow-x: hidden;
+}
+
+:root {
+  --bg: white;
+  --contrast: black;
+  --slight: rgb(220,220,220);
+  --main: #0d6efd;
+  --bgslight: rgba(255,255,255,0.6);
+  --br: 0px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.fullwidth{
+  width: 200%;
+  text-align: center;
+}
+
+.halfwidth {
+  width: 25%;
+  float: left;
+}
+
+nav {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  background-color: rgb(36, 35, 35);
+  z-index: 1000;
+}
+
+.nav-items{
+  margin: 0;
+  padding: 0;
+}
+
+.navleft {
+  position: fixed;
+  float: left;
+}
+
+.navcenter {
+  text-align: center; 
+  width: 100%;
+}
+
+.navright {
+  position: fixed; 
+  right: 0%;
+  top: 0%;
+}
+
+.nav-items li {
+  display: inline-block;
+}
+
+
+.larget {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  display: block;
+  background-color: rgb(71, 71, 71);
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+.larget:hover {
+  background-color: #0d6efd;
+}
+
+
+.smallbtn {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  display: block;
+  background-color: rgb(71, 71, 71);
+  border: 3px solid var(--contrast);
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+.smallbtn:hover {
+  background-color: #0d6efd;
+}
+
+#addpoint {
+  width: 50%;
+  margin-left: 100%;
+  transform: translateX(-50%);
+}
+
+.logo{
+  padding: 5px;
+  margin: 0px;
+  margin-right: 5px;
+  margin-top: 3.5px;
+  height: 42px;
+  border-radius: 10px;
+  transition: background-color 0.25s; 
+  cursor:pointer
+}
+
+
+.logo:hover{
+  background-color: #0d6efd;
+}
+
+
+.headername{
+  color:white;
+  font-family: GlacierIndifference;
+  font-size: 25px;
+  padding: 0.63rem;
+}
+
+h1 {
+  color: var(--contrast);
+}
+
+td {
+  font-family: GlacierIndifference;
+  /* border: 0.75px solid black; */
+  margin: 0px;
+}
+
+table {
+  width: 70%;
+  margin: 15%;
+  margin-top: 100px;
+  border: 1px solid var(--contrast);
+
+  overflow-y: scroll;
+}
+
+th {
+  font-weight: bold;  
+}
+
+
+.plotgraph {
+  margin: 5%;
+  width: 70%;
+  aspect-ratio: 1/1;
+  border-bottom: 5px solid var(--contrast);
+  cursor: crosshair;
+  border-left: 5px solid var(--contrast);
+  transform: rotate(0.00001deg);
+}
+
+.point {
+  position: absolute;
+  background-color: var(--main);
+  width: 2.8%;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.25s left 10s top 10s;
+}
+
+.tickY {
+  position: absolute;
+  width: 2%;
+  height: 1%;
+  background-color: var(--contrast);
+  transform: translate(-50%, -50%);
+}
+
+.tickX {
+  position: absolute;
+  width: 2%;
+  height: 1%;
+  background-color: var(--contrast);
+  transform: rotate(90deg) translate(-25%, 200%);
+}
+
+.tickLabel {
+  position: absolute;
+  color: var(--contrast);
+  font-weight: bold;
+}
+
+
+
+.slidecontainer {
+  width: 70%;
+  margin: 0px;
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 15px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--main); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--main); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.tablerow {
+  border: 0px;
+}
+
+.tablerow:hover {
+  background-color: var(--main);
+}
+
+tr {
+  transition: background-color 0.5s;
+}
+
+}
+
+
+.controlPanel {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 15px;
+  /*background-color: var(--contrast);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;*/
+  
+  /*border: 4px solid var(--main);
+  border-bottom: 0px var(--bg);*/
+}
+
+.goarrow {
+  display: table;
+  position: relative;
+  width: 80px;
+  height: 50px;
+  background-color: green;
+  color: white;
+  transition: background-color 0.5s;
+  border-radius: 5px;
+}
+
+.goarrow:hover {
+  cursor: pointer;
+  background-color: limegreen;
+}
+
+
+.horizontalHistogramPlot {
+  margin: 5%;
+  width: 70%;
+  aspect-ratio: 1/1;
+  border-left: 5px solid var(--contrast);
+  transform: rotate(0.00001deg);
+}
+
+.residualHistogram {
+  margin: 5%;
+  margin-top: 13.75%;
+  width: 70%;
+  aspect-ratio: 1/1;
+  border-left: 5px solid var(--contrast);
+  transform: translateY(-12.5%) rotate(0.00001deg);
+}
+
+
+
+.largenotif{
+  position: fixed;
+  display: none;
+  width: 50%;
+  height: 30%;
+  left: 25%;
+  top: 66%;
+  background-color: var(--slight);
+  border-radius: 25px;
+  border: 6px solid var(--main);
+  text-align: center;
+  font-size: 50px;
+  color: var(--contrast);
+  opacity: 0;
+  z-index: 1000;
+  transition: opacity 0.25s, display 0s, top 0.25s, background-color 0.25s;
+}
+
+.close {
+  width: 20%;
+  margin-left: 40%;
+  background: var(--bg);
+  color: var(--contrast);
+  border: 5px solid var(--main);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.exit-modal {
+  all: unset;
+  cursor: pointer;
+  position: fixed;
+  color: var(--contrast);
+  bottom: 0;
+  right: 15px;
+  width: 2.5rem;
+  font-size: 10px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  user-select: none;
+  font-weight: bold;
+}
+
+
+.pointInput {
+  background-color: var(--bg);
+  color: var(--contrast);
+  border: none; 
+  text-align: center; 
+  font-size: 20px; 
+  width: 178px; 
+  margin: 0px;
+}
+
+.xyCol {
+  border: 1px solid white;
+}
+
+/* totally not copied over from w3 lmfao */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--contrast);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--bg);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--main);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--main);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+.screen{
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 0.25s, display 0.25s;
+}
+
+
+.preloadedOption {
+  width: 30%;
+  margin: 1.5%;
+  height: 150px;
+  background-color: var(--bgslight);
+  border-radius: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+  font-size: 37%;
+  color: black;
+  overflow: hidden;
+  transition: opacity 0.5s;
+
+}
+
+.preloadedOption:hover {
+  opacity: 1;
+}
+
+.tickedBox {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 0%;
+  height: 0%;
+  border-top: 2px dashed rgb(200,0,0);
+  border-right: 2px dashed rgb(200,0,0);
+}
+
+.bfequation {
+  font-size: 20px;
+  color: red;
+  transform: rotate(0.01deg);
+  margin-bottom: 0px;
+}
+
+.endplot {
+  width: 25%;
+  margin-left: 12.5%;
+  aspect-ratio: 3 / 2;
+/*  background-color: rgba(255, 255, 0, 0.2);*/ /* looks a bit cheap imo 8*/
+}
+
+.endpanel {
+/*  position: absolute;*/
+  width: 50%;
+  margin-left: 25%;
+  height: 100%;
+}
+
+.endexplain {
+  position: absolute;
+  left: 0px;
+  margin-top: 10%;
+  margin-left: 20%;
+  width: 50%;
+  height: 100%;
+  color: var(--contrast);
+  font-size: 1000%;
+}
+
+
+.exit-modal {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  color: var(--contrast);
+  top: 0;
+  right: 0;
+  width: 2.5rem;
+  font-size: 2.5rem;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  user-select: none;
+  font-weight: bold;
+  transition: color 0.25s;
+}
+
+.exit-modal:hover {
+  color: var(--main);
+}
+
+.residualLine {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 0%;
+  height: 0%;
+  border-right: 2px dashed rgb(0,200,0);
+  z-index: -2;
+}
+
+.varianceBox {
+  position: absolute;
+  aspect-ratio: 1/1;
+  bottom: 0px;
+  left: 0px;
+  width: 0%;
+  height: 0%;
+  border: 6px solid red;
+}
+
+
+.realres {
+  margin: 5%;
+  width: 70%;
+  aspect-ratio: 1/1;
+  border-left: 5px solid var(--contrast);
+  transform: rotate(0.00001deg);
+}
+
+.middleBox {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50%;
+  border-top: 5px solid var(--contrast);
+}
+
+.summary {
+  font-family: GlacierIndifference;
+  padding: 20px;
+  width: 50%;
+  height: 40%;
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  color: var(--contrast);
+  font: 20px;
+}
+
+
+.fractionContainer {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+}
+
+.fractionInternal {
+  border-top: 1px solid var(--contrast);
+  color: rgb(0, 174, 255);
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: rgb(0, 174, 255);
+}

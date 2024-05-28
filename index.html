@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='og:viewport' content='width=device-width,initial-scale=1'>
+    <meta name="og:description" content="Iams">
+    <meta property="og:image" content="image">
+    <title>Iams</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Finlandica&display=swap" rel="stylesheet"> 
+  </head>
+
+  <script src="./js/preloadedData.js"></script>
+  <script src="./js/testSamples.js"></script>
+
+  <body>
+
+    <nav id="nav1">
+      <ul class="nav-items navleft">
+        <li class="headername">R² Visualizer</li>
+      </ul>
+      <ul class="nav-items navcenter" id="nav">
+        <li><a class="larget" onclick="openel('preloadedSelect');">Preloaded Data</a></li>
+        <li><a class="larget" onclick="openel('testSelect');">Test Samples</a></li>
+        <li><a class="larget" onclick="createShareLink(); openel('shareData');">Share Data</a></li>
+        <li><a class="larget" onclick="deleteAll();">Reset</a></li>
+      </ul> 
+      <ul class="nav-items navright">
+        <li title="Settings"><a onclick="openel('preferences');"><img src="assets/settings.png" height="30px" class="logo"></a></li>
+        <li title="Help"><a onclick="openel('instructions')"><img src="assets/help.png" height="30px" class="logo"></a></li>
+        <li title="Report bug"><a href="https://github.com/skparab1/iams/issues/new" target="_blank"><img src="assets/reportbuggy.png" height="30px" class="logo"></a></li>
+      </ul>
+    </nav>
+
+
+    <div class=fullwidth id="alldisplays">
+
+      <div class=halfwidth id="leftdisplay" style="padding-left: 20px;">
+        <h1>Point Table</h1>
+        <table id="xytable" style="display: block; overflow: auto; margin-top: 0px; padding: 2%; width:fit-content;">
+          <tr>
+            <th><h1 class="pointInput xyCol">X</h1></th>
+            <th><h1 class="pointInput xyCol">Y</h1></th>
+            <td onclick="deleteAll();" style="border-radius: 25px;"><p style="margin: 0px; padding: 0px; padding-left: 10px; padding-right: 10px; background-color: var(--contrast); cursor: pointer; border-radius: 25px; font-size: 75%;">Delete All</p></td>
+          </tr>
+          <th id="pointaddbutton">
+            <a><button id="addpoint" class=smallbtn onclick="addNewPoint();">Add Point</button></a>
+          </th>
+        </table> 
+      </div>
+
+      <div class=halfwidth id="middledisplay">
+        <h1 id="pglabel">Point graph <span class="bfequation" id="bfequation"></span></h1>
+        <div class='plotgraph' id="plotgraph">
+          <div id="tickedBox" class="tickedBox"></div>
+        </div>
+      </div>
+
+      <div class=halfwidth id="resdisp">
+        <h1 id="pglabel">Residual Plot</h1>
+        <div class='realres' id="realres">
+          <div id="realResRes" style="margin-top: -5%; opacity: 0;"></div>
+          <div id="middleBox" class="middleBox"></div>
+        </div>
+      </div>
+
+      <div class=halfwidth id="rightdisplay"></div>
+
+<!--       <div class=halfwidth style="width: 10%;">
+        <div class="slidecontainer" style="margin-top: 60%;">
+          <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style="transform: rotate(90deg);">
+        </div>
+      </div> -->
+    <div id="controlPanel" class="controlPanel" onclick="nextAction();">
+      <div class="goarrow">
+        <h3 style="display:table-cell; vertical-align:middle">Next &#8594;</h3>
+      </div>
+    </div>
+
+    <div id="screen" class="screen"></div>
+
+
+    <div class="largenotif" id="preferences" style="height: fit-content;">
+      <button class="exit-modal nohover" onclick="closeel('preferences');">&times</button>
+      <h1 style="font-size: 25px;">Settings</h1>
+      <h3 style="font-size: 20px; margin-bottom: 5px; margin-top: 0px;" id="theme">Theme: (Dark)</h3>
+      <label class="switch" onclick="toggletheme();">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <div class="close" onclick="closeel('preferences');">Close</div>
+    </div>
+    
+
+    <div class="largenotif" id="instructions" style="top: 100%; opacity: 0; height: auto; margin-bottom: 50px;">
+      <button class="exit-modal nohover" onclick="closeel('instructions');">&times</button>
+      <h1 style='font-size: 25px; margin: 10px;'>How to use</h1>
+      <h5 style='font-size: 20px; margin: 10px;'>1. Click the graph or add points to the table to create data. Alternatively, use preloaded data or samples.</h5>
+      <h5 style='font-size: 20px; margin: 10px;'>2. Modify points using the table or delete points by clicking them.</h5>
+      <h5 style='font-size: 20px; margin: 10px;'>3. Click the next button to view steps of the animation.</h5>
+      <h5 style='font-size: 20px; margin: 10px;'>3. Click share data to get a URL for your data.</h5>
+      <div class="close" onclick="closeel('instructions'); closescreen();">Close</div>
+    </div>
+
+
+    <div class="largenotif" id="preloadedSelect" style="padding: 1.5%; top: 100%; opacity: 0; height: 60%; margin-bottom: 50px; overflow-y: scroll;">
+      <button class="exit-modal nohover" onclick="closeel('preloadedSelect');">&times</button>
+      <h1 style='font-size: 25px; margin: 10px;'>Select Preloaded Data</h1>
+    </div>
+
+
+    <div class="largenotif" id="testSelect" style="padding: 1.5%; top: 100%; opacity: 0; height: 60%; margin-bottom: 50px; overflow-y: scroll;">
+        <button class="exit-modal nohover" onclick="closeel('testSelect');">&times</button>
+        <h1 style='font-size: 25px; margin: 10px;'>Select Test Sample</h1>
+    </div>
+
+    <div class="largenotif" id="shareData" style="padding: 1.5%; top: 100%; opacity: 0; height: auto; margin-bottom: 50px; overflow-y: scroll;">
+      <button class="exit-modal nohover" onclick="closeel('shareData');">&times</button>
+      <h1 style='font-size: 25px; margin: 10px;'>Share this link to transfer your data!</h1>
+      <h1 id="shareLink" style='font-size: 20px; margin: 10px;'></h1>
+      <div class="close" onclick="closeel('shareData'); closescreen();">Close</div>
+    </div>
+    
+    <div class="largenotif" id="loading" style="padding: 1.5%; top: 100%; opacity: 0; height: auto; margin-bottom: 50px; overflow-y: scroll;">
+      <h1 style='font-size: 25px; margin: 10px;'>Loading...</h1>
+      <h1 style='font-size: 20px; margin: 10px;'>This should only take a few seconds</h1>
+      <div class="close" onclick="location.reload();">Try again</div>
+    </div>
+
+    <div class="largenotif" id="music" style="top: 100%; opacity: 0; height: 70%; overflow: scroll; margin-bottom: 50px; border-radius: 10px;">
+      <button class="exit-modal nohover" onclick="closeel('music');">&times</button>
+      <h1 style='font-size: 25px; margin: 10px;'>Iams Music</h1>
+      <h5 style='font-size: 20px; margin: 10px;'>Listen to high quality Iams Music as you do your homework</h5>
+      <h5 style='font-size: 20px; margin: 10px; color: var(--main);'>"Iams" ft. Shubham and Abhishek by AGP</h5>
+      <audio src="assets/music/abhishek ft shubham - iams.mp3" controls></audio>
+      <h5 style='font-size: 20px; margin: 10px; color: var(--main);'>"Stats" ft. Poisonpati by AGP</h5>
+      <audio src="assets/music/poisonpati_-_stats.mp3" controls></audio>
+      <h5 style='font-size: 20px; margin: 10px; color: var(--main);'>"Bald" ft. Akarolly by AGP</h5>
+      <audio src="assets/music/akarolly_-_bald.mp3" controls></audio>
+      <h5 style='font-size: 20px; margin: 10px; color: var(--main);'>"Covid" ft. Poisonpati by AGP</h5>
+      <audio src="assets/music/poisonpati_-_covid.mp3" controls></audio>
+      <div class="close" onclick="closeel('music'); closescreen();">Close</div>
+    </div>
+    
+
+
+    <script src="js/index.js"></script>
+    <script src="js/html-controller.js"></script>
+  </body>
+</html>
